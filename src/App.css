@@ -1,0 +1,289 @@
+/* GOOGLE FONT: Inter (Modern, Clean) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+/* RESET & BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: radial-gradient(circle at center, #003300, #001a00);
+  color: #1a1a1a;
+  min-height: 100vh;
+  padding: 2rem;
+  overflow-x: hidden;
+  line-height: 1.6;
+  display: block;
+}
+
+
+.container {
+  width: 100%;
+  margin: 4rem auto 0 auto;
+  max-width: 1000px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+/* HEADINGS */
+h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #006600;
+}
+
+
+h3 {
+  color: #004d00;
+  margin: 2rem 0 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+/* TEXT */
+p {
+  margin: 0.75rem 0;
+  font-size: 1rem;
+  color: #222;
+}
+
+strong {
+  color: #cc9900; /* gold */
+  font-weight: 600;
+}
+
+/* BUTTONS */
+button {
+  background-color: #006600;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #008000;
+}
+.selected-year {
+  font-weight: 600;
+  color: #004d00; /* dark green */
+  margin: 1rem auto;
+  text-align: center;
+}
+
+
+/* SEMESTER GRID */
+.semester-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* SEMESTER TABLE */
+.semester-table {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+}
+
+.semester-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.semester-table th,
+.semester-table td {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #000;
+}
+
+.semester-table th {
+  background: #e8f5e9;
+  color: #006600;
+  font-weight: 600;
+}
+
+.semester-table input {
+  width: 100%;
+  padding: 0.5rem;
+  background: #f9f9f9;
+  color: #000;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+.semester-table button {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: #006600;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.semester-table button:hover {
+  background-color: #008000;
+}
+
+/* MODAL (React-Modal) */
+.resultOverlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding-top: 5vh;
+}
+
+.resultModal {
+  background: #ffffff;
+  color: #222;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow-y: auto;
+  max-height: 80vh;
+  outline: none;
+}
+
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #333;
+  cursor: pointer;
+}
+
+/* TIP BOX */
+.tip {
+  margin-top: 1.5rem;
+  background: #f1f8e9;
+  padding: 1rem;
+  border-left: 5px solid #006600;
+  border-radius: 4px;
+  font-style: italic;
+  color: #2e7d32;
+}
+
+/* SECTION */
+.section {
+  margin-top: 1.5rem;
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+/* RESULT UL */
+.results ul {
+  margin-left: 1.5rem;
+  padding-left: 1rem;
+  list-style-type: disc;
+  color: #333;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .semester-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resultModal {
+    max-height: 90vh;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+.results table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+.results th,
+.results td {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.results th {
+  background: #e8f5e9;
+  color: #006600;
+}
+
+.results tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+/* Hide number input arrows for all browsers */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Scrollbar Track */
+::-webkit-scrollbar {
+  width: 15px; /* width of vertical scrollbar */
+  height: 12px; /* height of horizontal scrollbar */
+}
+
+/* Scrollbar Thumb */
+::-webkit-scrollbar-thumb {
+  background: #006600; /* green thumb */
+}
+
+/* Scrollbar Track (background) */
+::-webkit-scrollbar-track {
+  background: #f0f0f0; /* light gray track */
+}
+
+/* Optional: on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #008000;
+}
+
+
+.instructions p {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background: #f9f9f9;
+  border-left: 5px solid #006600;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #333;
+}

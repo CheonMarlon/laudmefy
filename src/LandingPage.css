@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Caprasimo&family=Gravitas+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Caprasimo&family=Gravitas+One&family=Teko:wght@300..700&display=swap');
+
+
+/* Global reset to ensure full viewport */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+/* Main wrapper */
+.landing-page {
+  min-height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  overflow: hidden;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0);
+  padding: 0rem 1rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 25px;
+  margin-right: 10px;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: bold;
+    font-family: 'Teko', sans-serif;
+}
+
+.navbar-right button {
+  background: none;
+  border: none;
+  color: white;
+  margin-left: 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+    font-family: 'Teko', sans-serif;
+}
+
+.navbar-right button:hover {
+  text-decoration: underline;
+}
+
+/* Landing Text */
+.landing-text {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+  max-width: 650px;
+  text-align: left;
+  z-index: 1;
+}
+
+/* Headline + Paragraph */
+.landing-text h1 {
+
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: left;
+    font-family: 'Abril Fatface', cursive;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.landing-text p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+/* CTA Button */
+.cta-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background-color: #f5c518;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+.cta-button:hover {
+  background-color: #ffdd44;
+  transform: translateY(-2px);
+}
+
+.cta-button:focus {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-box {
+  background: white;
+  color: black;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+}
+
+.close-btn {
+  margin-top: 1.5rem;
+  background: #222;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
