@@ -3,37 +3,13 @@ import YearSelector from './YearSelector';
 import SemesterTable from './SemesterTable';
 import CheckButton from './CheckButton';
 import ResultCard from './ResultCard';
-import '../App.css'; // Assuming you have some styles for this component
+import '../App.css';
 
 const yearMap = {
-  1: [
-    { year: 1, sem: '1st' },
-    { year: 1, sem: '2nd' }
-  ],
-  2: [
-    { year: 1, sem: '1st' },
-    { year: 1, sem: '2nd' },
-    { year: 2, sem: '1st' },
-    { year: 2, sem: '2nd' }
-  ],
-  3: [
-    { year: 1, sem: '1st' },
-    { year: 1, sem: '2nd' },
-    { year: 2, sem: '1st' },
-    { year: 2, sem: '2nd' },
-    { year: 3, sem: '1st' },
-    { year: 3, sem: '2nd' }
-  ],
-  4: [
-    { year: 1, sem: '1st' },
-    { year: 1, sem: '2nd' },
-    { year: 2, sem: '1st' },
-    { year: 2, sem: '2nd' },
-    { year: 3, sem: '1st' },
-    { year: 3, sem: '2nd' },
-    { year: 4, sem: '1st' },
-    { year: 4, sem: '2nd' }
-  ]
+  1: [{ year: 1, sem: '1st' }, { year: 1, sem: '2nd' }],
+  2: [{ year: 1, sem: '1st' }, { year: 1, sem: '2nd' }, { year: 2, sem: '1st' }, { year: 2, sem: '2nd' }],
+  3: [{ year: 1, sem: '1st' }, { year: 1, sem: '2nd' }, { year: 2, sem: '1st' }, { year: 2, sem: '2nd' }, { year: 3, sem: '1st' }, { year: 3, sem: '2nd' }],
+  4: [{ year: 1, sem: '1st' }, { year: 1, sem: '2nd' }, { year: 2, sem: '1st' }, { year: 2, sem: '2nd' }, { year: 3, sem: '1st' }, { year: 3, sem: '2nd' }, { year: 4, sem: '1st' }, { year: 4, sem: '2nd' }]
 };
 
 const getOrdinalYearLabel = (year) => {
@@ -49,10 +25,7 @@ const LauUdMefy = () => {
   const [showResult, setShowResult] = useState(false);
 
   const handleCheck = () => setShowResult(true);
-
-  const handleUpdate = (key, data) => {
-    setSemData(prev => ({ ...prev, [key]: data }));
-  };
+  const handleUpdate = (key, data) => setSemData((prev) => ({ ...prev, [key]: data }));
 
   const semList = year ? yearMap[year] : [];
 
@@ -64,20 +37,20 @@ const LauUdMefy = () => {
   }, {});
 
   return (
-    <div className="container">
+    <>
       {!year ? (
-        <YearSelector onSelect={setYear} />
+        <div className="year-selector-box">
+          <YearSelector onSelect={setYear} />
+        </div>
       ) : (
-        <>
+        <div className="container">
           <p className='selected-year'>🎓 Selected Year Level: <strong>{getOrdinalYearLabel(year)}</strong></p>
 
           <div className="instructions">
             <p>📚 Enter your grades and units for each semester. Click "Check" to see your GWA and honor standing.</p>
             <p>🔍 You can add or remove semesters as needed.</p>
-            <p>📊 The tool will calculate your GWA and provide insights on your academic standing. </p>
-
-            <h5><strong>Reminder: </strong>Don't include the PE and NSTP subjects in the input and computation</h5>
-
+            <p>📊 The tool will calculate your GWA and provide insights on your academic standing.</p>
+            <h5><strong>Reminder:</strong> Don't include PE and NSTP subjects in the input and computation.</h5>
           </div>
 
           {Object.entries(groupedByYear).map(([yearLabel, sems]) => (
@@ -105,9 +78,9 @@ const LauUdMefy = () => {
             onClose={() => setShowResult(false)}
             allSemData={semData}
           />
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

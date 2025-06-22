@@ -3,10 +3,9 @@ import React, { useState, useEffect, useRef } from 'react';
 const SemesterTable = ({ title, onUpdate }) => {
   const [rows, setRows] = useState([{ grade: '', units: '' }]);
   const [errors, setErrors] = useState([]);
-
-  // Refs for each input field (2D array: row -> [unitsRef, gradeRef])
   const inputRefs = useRef([]);
 
+  // Validate and update parent only when rows change
   useEffect(() => {
     const validRows = rows
       .filter((r) => isValidGrade(r.grade) && isValidUnits(r.units))
@@ -21,25 +20,32 @@ const SemesterTable = ({ title, onUpdate }) => {
     }));
 
     setErrors(currentErrors);
-    onUpdate(validRows);
-  }, [rows, onUpdate]);
 
+    if (typeof onUpdate === 'function') {
+      onUpdate(validRows); // ✅ safe from causing loops
+    }
+  }, [rows]); // ✅ only runs when rows change
+
+  // Grade & Unit validators
   const isValidGrade = (value) =>
     value !== '' && !isNaN(value) && value >= 1 && value <= 4;
 
   const isValidUnits = (value) =>
     value !== '' && !isNaN(value) && value > 0;
 
+  // Update a single row field
   const updateRow = (index, field, value) => {
     const updated = [...rows];
     updated[index][field] = value;
     setRows(updated);
   };
 
+  // Add new blank row
   const addRow = () => {
     setRows((prev) => [...prev, { grade: '', units: '' }]);
   };
 
+  // Auto-focus logic when pressing Enter
   const handleKeyDown = (e, rowIndex, colIndex) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -56,9 +62,12 @@ const SemesterTable = ({ title, onUpdate }) => {
     }
   };
 
-  // Ensure inputRefs has the correct structure
+  // Keep refs in sync with number of rows
   useEffect(() => {
-    inputRefs.current = rows.map((_, i) => inputRefs.current[i] || []);
+    inputRefs.current.length = rows.length;
+    rows.forEach((_, i) => {
+      inputRefs.current[i] = inputRefs.current[i] || [];
+    });
   }, [rows.length]);
 
   return (
@@ -82,7 +91,10 @@ const SemesterTable = ({ title, onUpdate }) => {
                   min="0.5"
                   step="0.5"
                   className={errors[i]?.units ? 'invalid' : ''}
-                  ref={(el) => (inputRefs.current[i] = inputRefs.current[i] || [], inputRefs.current[i][0] = el)}
+                  ref={(el) => {
+                    inputRefs.current[i] = inputRefs.current[i] || [];
+                    inputRefs.current[i][0] = el;
+                  }}
                   onChange={(e) => updateRow(i, 'units', e.target.value)}
                   onKeyDown={(e) => handleKeyDown(e, i, 0)}
                 />
@@ -96,7 +108,10 @@ const SemesterTable = ({ title, onUpdate }) => {
                   max="4"
                   step="0.01"
                   className={errors[i]?.grade ? 'invalid' : ''}
-                  ref={(el) => (inputRefs.current[i] = inputRefs.current[i] || [], inputRefs.current[i][1] = el)}
+                  ref={(el) => {
+                    inputRefs.current[i] = inputRefs.current[i] || [];
+                    inputRefs.current[i][1] = el;
+                  }}
                   onChange={(e) => updateRow(i, 'grade', e.target.value)}
                   onKeyDown={(e) => handleKeyDown(e, i, 1)}
                 />
